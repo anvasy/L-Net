@@ -1,0 +1,20 @@
+<web-app>
+  <display-topic>Archetype Created Web Application</display-topic>
+
+  <welcome-file-list>
+    <welcome-file>home.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-topic>HomePageServlet</servlet-topic>
+    <servlet-class>servlet.HomePageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-topic>HomePageServlet</servlet-topic>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+
+

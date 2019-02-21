@@ -1,4 +1,4 @@
-package model;
+package com.anvasy.model;
 
 public class Article {
     private int id;
@@ -6,7 +6,9 @@ public class Article {
     private String summary;
     private String content;
 
-    public Article() { }
+    public Article() {
+        id = 0;
+    }
 
     public Article(int id) {
         this.id = id;

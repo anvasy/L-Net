@@ -1,18 +1,35 @@
-<web-app>
-  <display-topic>Archetype Created Web Application</display-topic>
 
-  <welcome-file-list>
-    <welcome-file>home.jsp</welcome-file>
-  </welcome-file-list>
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-topic>HomePageServlet</servlet-topic>
-    <servlet-class>servlet.HomePageServlet</servlet-class>
+    <servlet-name>HomePageServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.HomePageServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-topic>HomePageServlet</servlet-topic>
-    <url-pattern>/home</url-pattern>
+    <servlet-name>HomePageServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ShowArticleServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.ShowArticleServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ShowArticleServlet</servlet-name>
+    <url-pattern>/article</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddEditServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.AddEditServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddEditServlet</servlet-name>
+    <url-pattern>/addedit</url-pattern>
   </servlet-mapping>
 
 </web-app>

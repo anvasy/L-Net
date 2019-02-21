@@ -1,7 +1,7 @@
-package dao;
+package com.anvasy.dao;
 
-import database.DataBase;
-import model.Article;
+import com.anvasy.database.DataBase;
+import com.anvasy.model.Article;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

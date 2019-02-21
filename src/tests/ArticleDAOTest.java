@@ -1,3 +1,4 @@
+/*
 import dao.ArticleDAO;
 import database.DataBase;
 import model.Article;
@@ -5,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class ArticleDAOTest {
         try {
             dataBase = new DataBase();
             articleDAO = new ArticleDAO(dataBase);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -61,4 +63,4 @@ public class ArticleDAOTest {
         return article;
     }
 
-}
+}*/

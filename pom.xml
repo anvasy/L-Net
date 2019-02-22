@@ -58,7 +58,7 @@
 
   <build>
     <finalName>l-net</finalName>
-    <testSourceDirectory>tests</testSourceDirectory>
+    <testSourceDirectory>src/tests</testSourceDirectory>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

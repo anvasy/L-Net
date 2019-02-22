@@ -33,14 +33,14 @@
 <header></header>
 <br>
 <form action="/addedit" method="POST" id="newarticle">
-    Тема статьи: <input type="text" name="name" required="required" style="height: 30px">
+    Тема статьи: <input type="text" name="name" required="required" style="height: 30px" value="${article.topic}">
     <br><br>
-    Краткое содержание: <textarea name="summary" required="required" style="height: 10%;"></textarea>
+    Краткое содержание: <textarea name="summary" required="required" style="height: 10%;">${article.summary}</textarea>
     <br><br>
-    Текст статьи: <textarea name="content" required="required" style="height: 50%;"></textarea>
+    Текст статьи: <textarea name="content" required="required" style="height: 50%;">${article.content}</textarea>
     <br>
     <br>
-    <button name="create">Ок</button>
+    <button name="id" value="${article.id}">Ок</button>
 </form>
 <button onclick="history.back();">Отмена</button>
 </body>

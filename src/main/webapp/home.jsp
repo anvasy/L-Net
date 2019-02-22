@@ -20,6 +20,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            counter-reset: rowNumber;
         }
         td, th {
             border: 1px solid #ddd;
@@ -41,6 +42,14 @@
             border-radius: 5px;
             background: #6ec5b8;
         }
+        table tr:not(:first-child) {
+            counter-increment: rowNumber;
+        }
+        table tr td:first-child::before {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
     </style>
 </head>
 <body>
@@ -54,13 +63,12 @@
             <TH>КРАТКОЕ СОДЕРЖАНИЕ</TH>
             <TH style="width: 55px"></TH>
         </TR>
-        <c:set var="count" value="0" scope="page" />
         <c:forEach var="article" items="${articles}">
             <TR>
-                <TD>${count + 1}</TD>
+                <TD></TD>
                 <TD>${article.topic}</TD>
                 <TD>${article.summary}</TD>
-                <form action="/article" method="POST" id="show">
+                <form action="/article" method="GET" id="show">
                     <TD style="background-color: #6ec5b8;"><button name="id" value="${article.id}" style="height: 50px;
                     width: 50px; background: transparent; border: none"></button></TD>
                 </form>

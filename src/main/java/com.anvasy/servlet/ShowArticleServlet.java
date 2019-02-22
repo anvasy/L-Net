@@ -18,6 +18,18 @@ public class ShowArticleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
+        try (DataBase dataBase = new DataBase()) {
+            ArticleDAO articleDAO = new ArticleDAO(dataBase);
+            articleDAO.delete(Integer.valueOf(id));
+            httpServletResponse.sendRedirect("/home");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        String id = httpServletRequest.getParameter("id");
         if(id.equals("")) {
             httpServletResponse.sendRedirect("/home.jsp");
             return;
@@ -30,10 +42,5 @@ public class ShowArticleServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        System.out.println("GET");
     }
 }

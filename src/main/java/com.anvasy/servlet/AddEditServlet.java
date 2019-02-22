@@ -16,7 +16,8 @@ public class AddEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
         if(id.equals("0")) {
-            httpServletResponse.sendRedirect("/addedit.jsp");
+            httpServletRequest.setAttribute("article", new Article());
+            httpServletRequest.getRequestDispatcher("/addedit.jsp").forward(httpServletRequest, httpServletResponse);
             return;
         }
         try (DataBase dataBase = new DataBase()) {
@@ -30,6 +31,22 @@ public class AddEditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        super.doPost(httpServletRequest, httpServletResponse);
+        String id = httpServletRequest.getParameter("id");
+        try (DataBase dataBase = new DataBase()) {
+            ArticleDAO articleDAO = new ArticleDAO(dataBase);
+            Article article = new Article();
+            article.setTopic(httpServletRequest.getParameter("name"));
+            article.setSummary(httpServletRequest.getParameter("summary"));
+            article.setContent(httpServletRequest.getParameter("content"));
+            if(Integer.valueOf(id) != 0) {
+                article.setId(Integer.valueOf(id));
+                articleDAO.update(article);
+            } else {
+                articleDAO.insert(article);
+            }
+            httpServletResponse.sendRedirect("/home");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

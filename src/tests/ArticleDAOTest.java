@@ -1,7 +1,7 @@
-/*
-import dao.ArticleDAO;
-import database.DataBase;
-import model.Article;
+
+import com.anvasy.dao.ArticleDAO;
+import com.anvasy.database.DataBase;
+import com.anvasy.model.Article;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,4 +63,7 @@ public class ArticleDAOTest {
         return article;
     }
 
-}*/
+}
+
+
+

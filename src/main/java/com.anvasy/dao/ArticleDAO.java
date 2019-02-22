@@ -29,10 +29,10 @@ public class ArticleDAO {
         ps.execute();
     }
 
-    public void delete(Article article) throws SQLException {
+    public void delete(int id) throws SQLException {
         PreparedStatement ps = db.getCn().prepareStatement(
                 "delete from articles where id = ?");
-        ps.setInt(1, article.getId());
+        ps.setInt(1, id);
         ps.execute();
     }
 

@@ -31,8 +31,4 @@ public class HomePageServlet extends HttpServlet {
             logger.error(ExceptionUtils.getStackTrace(e));
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
-    }
 }

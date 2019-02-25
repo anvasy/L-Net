@@ -1,9 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
 
 <html>
 <head>
-    <title>Article list</title>
+    <title>Article list ${id}</title>
     <style>
         header{
             background-color: #f87b00;
@@ -54,15 +55,17 @@
 </head>
 <body>
 <header></header>
-
-    <H3>СПИСОК СТАТЕЙ: </H3>
+<H3>СПИСОК СТАТЕЙ: </H3>
     <TABLE BORDER="1">
+        <thead>
         <TR>
             <TH>№</TH>
             <TH>НАЗВАНИЕ</TH>
             <TH>КРАТКОЕ СОДЕРЖАНИЕ</TH>
             <TH style="width: 55px"></TH>
         </TR>
+        </thead>
+        <tbody>
         <c:forEach var="article" items="${articles}">
             <TR>
                 <TD></TD>
@@ -74,10 +77,12 @@
                 </form>
             </TR>
         </c:forEach>
+        </tbody>
     </TABLE>
 <br>
     <form action="/addedit" method="GET" id="add">
         <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
     </form>
 </body>
+<ctg:copyright/>
 </html>

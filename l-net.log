@@ -23,3 +23,36 @@
 11:01:47,525 ERROR http-bio-8080-exec-3 - Data source rejected establishment of connection,  message from server: "Too many connections"
 11:05:54,653 ERROR http-bio-8080-exec-1 - Data source rejected establishment of connection,  message from server: "Too many connections"
 11:05:57,241 ERROR http-bio-8080-exec-2 - Data source rejected establishment of connection,  message from server: "Too many connections"
+23:43:40,066  INFO localhost-startStop-1 - EncodingFilter created.
+00:41:33,217  INFO localhost-startStop-1 - EncodingFilter created.
+10:50:00,780  INFO localhost-startStop-1 - EncodingFilter created.
+10:52:24,509  INFO localhost-startStop-1 - EncodingFilter created.
+10:55:44,720  INFO localhost-startStop-1 - EncodingFilter created.
+12:29:17,474  INFO localhost-startStop-1 - EncodingFilter created.
+12:30:55,486  INFO localhost-startStop-1 - EncodingFilter created.
+12:31:49,714  INFO localhost-startStop-1 - EncodingFilter created.
+13:35:39,026  INFO localhost-startStop-1 - EncodingFilter created.
+13:46:56,637  INFO localhost-startStop-1 - EncodingFilter created.
+13:53:24,150  INFO localhost-startStop-1 - EncodingFilter created.
+13:54:29,335  WARN http-bio-8080-exec-1 - MY ID IS: null.
+13:56:20,998  WARN http-bio-8080-exec-3 - MY ID IS: 1.
+13:57:48,147  INFO localhost-startStop-1 - EncodingFilter created.
+13:58:04,849  WARN http-bio-8080-exec-1 - MY ID IS: null.
+13:58:04,869  WARN http-bio-8080-exec-1 - MY BODY IS: .
+14:05:32,225  INFO http-bio-8080-exec-7 - Article with id 12was deleted.
+14:07:15,590  WARN http-bio-8080-exec-5 - MY ID IS: 26.
+14:07:15,590  WARN http-bio-8080-exec-5 - MY BODY IS: .
+14:29:43,325  WARN http-bio-8080-exec-9 - MY ID IS: null.
+14:29:43,326  WARN http-bio-8080-exec-9 - MY BODY IS: .
+14:48:55,822  WARN http-bio-8080-exec-1 - MY ID IS: null.
+14:48:55,822  WARN http-bio-8080-exec-1 - MY BODY IS: 
+id=1111.
+14:53:08,936  WARN http-bio-8080-exec-4 - MY ID IS: null.
+14:53:08,936  WARN http-bio-8080-exec-4 - MY BODY IS: 
+id=1
+.
+14:53:57,871  WARN http-bio-8080-exec-3 - MY ID IS: null.
+14:54:41,200  WARN http-bio-8080-exec-2 - MY ID IS: null.
+14:58:23,441  WARN http-bio-8080-exec-7 - MY ID IS: null.
+17:22:03,562  INFO localhost-startStop-1 - EncodingFilter created.
+17:24:18,433  INFO http-bio-8080-exec-8 - New article on Ethernet added.

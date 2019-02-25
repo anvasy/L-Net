@@ -5,9 +5,16 @@ public class Article {
     private String topic;
     private String summary;
     private String content;
+    private int author;
 
     public Article() {
         id = 0;
+    }
+
+    public Article(String topic, String summary, String content) {
+        this.topic = topic;
+        this.summary = summary;
+        this.content = content;
     }
 
     public Article(int id) {
@@ -44,5 +51,13 @@ public class Article {
 
     public void setContent(String text) {
         this.content = text;
+    }
+
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
     }
 }

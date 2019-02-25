@@ -2,7 +2,7 @@ package com.anvasy.servlet;
 
 import com.anvasy.dao.ArticleDAO;
 import com.anvasy.database.DataBase;
-import com.anvasy.model.Article;
+import org.apache.commons.lang.exception.ExceptionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,12 +19,10 @@ public class ShowArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
         try (DataBase dataBase = new DataBase()) {
-            ArticleDAO articleDAO = new ArticleDAO(dataBase);
-            articleDAO.delete(Integer.valueOf(id));
+            new ArticleDAO(dataBase).delete(Integer.valueOf(id));
+            logger.info("Article with id " + id + "was deleted.");
             httpServletResponse.sendRedirect("/home");
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 
     @Override
@@ -35,12 +33,8 @@ public class ShowArticleServlet extends HttpServlet {
             return;
         }
         try (DataBase dataBase = new DataBase()) {
-            ArticleDAO articleDAO = new ArticleDAO(dataBase);
-            Article article = articleDAO.getArticle(Integer.valueOf(id));
-            httpServletRequest.setAttribute("article", article);
+            httpServletRequest.setAttribute("article", new ArticleDAO(dataBase).getArticle(Integer.valueOf(id)));
             httpServletRequest.getRequestDispatcher("/article.jsp").forward(httpServletRequest, httpServletResponse);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 }

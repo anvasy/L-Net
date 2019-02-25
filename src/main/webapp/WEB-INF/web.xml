@@ -2,11 +2,32 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.anvasy.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>
+      com.anvasy.filter.LoginFilter
+    </filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/login</url-pattern>
+    <url-pattern>/register</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>HomePageServlet</servlet-name>
     <servlet-class>com.anvasy.servlet.HomePageServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>HomePageServlet</servlet-name>
     <url-pattern>/</url-pattern>
@@ -16,7 +37,6 @@
     <servlet-name>ShowArticleServlet</servlet-name>
     <servlet-class>com.anvasy.servlet.ShowArticleServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>ShowArticleServlet</servlet-name>
     <url-pattern>/article</url-pattern>
@@ -26,10 +46,27 @@
     <servlet-name>AddEditServlet</servlet-name>
     <servlet-class>com.anvasy.servlet.AddEditServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>AddEditServlet</servlet-name>
     <url-pattern>/addedit</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
   </servlet-mapping>
 
 </web-app>

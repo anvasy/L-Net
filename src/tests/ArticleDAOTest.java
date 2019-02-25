@@ -7,7 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -45,6 +48,20 @@ public class ArticleDAOTest {
         assertEquals(len, articleDAO.getAll().size() - 1);
         articleDAO.update(prepareArticle(2));
         assertEquals("TEST", articleDAO.getArticle(2).getTopic());
+
+        PreparedStatement ps = dataBase.getCn().prepareStatement(
+                "insert into articles (topic,summary,content) values('T','TT','TTT')", Statement.RETURN_GENERATED_KEYS);
+        ps.execute();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        int generatedKey = 0;
+        if (rs.next())
+            generatedKey = rs.getInt(1);
+        len = articleDAO.getAll().size();
+
+        articleDAO.delete(generatedKey);
+
+        assertEquals(len, articleDAO.getAll().size() + 1);
     }
 
     @After
@@ -55,10 +72,8 @@ public class ArticleDAOTest {
     }
 
     private Article prepareArticle(int id) {
-        Article article = new Article(id);
-        article.setTopic("TEST");
-        article.setContent("TEST CONTENT");
-        article.setSummary("TEST SUMMARY");
+        Article article = new Article("TEST", "TEST CONTENT", "TEST SUMMARY");
+        article.setId(id);
 
         return article;
     }

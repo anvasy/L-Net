@@ -19,12 +19,14 @@ public class ArticleDAO {
 
     public void insert(Article article) throws SQLException {
         PreparedStatement ps = db.getCn().prepareStatement(
-                "insert into articles (topic,summary,content)"
-                        + "values(?,?,?)");
+                "insert into articles (topic,summary,content,rate,rate_number)"
+                        + "values(?,?,?,?,?)");
 
         ps.setString(1, article.getTopic());
         ps.setString(2, article.getSummary());
         ps.setString(3, article.getContent());
+        ps.setFloat(4, 0);
+        ps.setInt(5, 0);
 
         ps.execute();
     }
@@ -43,6 +45,19 @@ public class ArticleDAO {
         ps.setString(2, article.getSummary());
         ps.setString(3, article.getContent());
         ps.setInt(4, article.getId());
+
+        ps.execute();
+    }
+
+    public void updateRate(int rate, int id) throws SQLException {
+        PreparedStatement ps = db.getCn().prepareStatement(
+                "update articles set rate=?, rate_number=? where id = ?");
+
+        Article article = getArticle(id);
+
+        ps.setFloat(1, (article.getRate()*article.getRateNumber() + rate)/(article.getRateNumber() + 1));
+        ps.setInt(2, article.getRateNumber() + 1);
+        ps.setInt(3, id);
 
         ps.execute();
     }
@@ -75,6 +90,7 @@ public class ArticleDAO {
             article.setTopic(rs.getString("topic"));
             article.setSummary(rs.getString("summary"));
             article.setContent(rs.getString("content"));
+            article.setRate(rs.getFloat("rate"));
         }
 
         return article;

@@ -17,5 +17,8 @@
     Пароль: <input type="password" name="password" required="required" style="height: 10%;"/>
     <button>Войти</button>
 </form>
+<form action="/register" method="GET">
+    <button>Зарегистрироваться</button>
+</form>
 </body>
 </html>

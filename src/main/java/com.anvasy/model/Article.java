@@ -5,16 +5,11 @@ public class Article {
     private String topic;
     private String summary;
     private String content;
-    private int author;
+    private float rate;
+    private int rateNumber;
 
     public Article() {
         id = 0;
-    }
-
-    public Article(String topic, String summary, String content) {
-        this.topic = topic;
-        this.summary = summary;
-        this.content = content;
     }
 
     public Article(int id) {
@@ -53,11 +48,19 @@ public class Article {
         this.content = text;
     }
 
-    public int getAuthor() {
-        return author;
+    public int getRateNumber() {
+        return rateNumber;
     }
 
-    public void setAuthor(int author) {
-        this.author = author;
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRateNumber(int rateNumber) {
+        this.rateNumber = rateNumber;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }

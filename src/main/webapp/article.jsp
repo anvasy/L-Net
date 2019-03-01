@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -28,9 +29,33 @@
     </style>
 </head>
 <body>
-<header></header>
+<header>
+    <c:if test="${sessionScope.get('user') eq null}">
+    <form action="/login" method="get">
+            <button style="width: 100px;">Войти</button>
+    </form>
+    </c:if>
+    <c:if test="${sessionScope.get('user') ne null}">
+        <form action="/bonus" method="get">
+            <button style="width: 100px">Выйти</button>
+        </form>
+    </c:if>
+</header>
 <br>
 <h1>${article.topic}</h1>
+<h3>Оценка: ${article.rate}</h3>
+<c:if test="${sessionScope.get('user') ne null}">
+<form action="/bonus" method="post">
+    <select style="height: 50px; margin-left: 20px" name="rated">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+    <button name="arid" style="width: 100px" value="${article.id}">Оценить</button>
+</form>
+</c:if>
 <p>
     ${article.content}
 </p>
@@ -41,10 +66,6 @@
     </form>
     <form action="/article" method="POST">
         <button name="id" value=${article.id}>Удалить</button>
-    </form>
-
-    <form action="/" method="POST">
-        <button name="id" value=${article.id}>Тест</button>
     </form>
 </div>
 

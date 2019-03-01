@@ -32,7 +32,18 @@
     </style>
 </head>
 <body>
-<header></header>
+<header>
+    <c:if test="${sessionScope.get('user') eq null}">
+        <form action="/login" method="get">
+            <button style="width: 100px;">Войти</button>
+        </form>
+    </c:if>
+    <c:if test="${sessionScope.get('user') ne null}">
+        <form action="/bonus" method="get">
+            <button style="width: 100px">Выйти</button>
+        </form>
+    </c:if>
+</header>
 <br>
 <form action="/addedit" method="POST" id="newarticle">
     Тема статьи: <input type="text" name="name" required="required" style="height: 30px" value="${article.topic}">

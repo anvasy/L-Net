@@ -69,6 +69,16 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>BonusServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.BonusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BonusServlet</servlet-name>
+    <url-pattern>/bonus</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>
 
 

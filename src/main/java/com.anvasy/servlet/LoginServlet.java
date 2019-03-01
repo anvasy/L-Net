@@ -27,9 +27,10 @@ public class LoginServlet extends HttpServlet {
         String name = httpServletRequest.getParameter("name");
         String password = httpServletRequest.getParameter("password");
         try(DataBase dataBase = new DataBase()) {
-            if(new UsersDAO(dataBase).getUser(name, password)) {
+            int id = new UsersDAO(dataBase).getUser(name, password);
+            if(id != -1) {
                 HttpSession session = httpServletRequest.getSession();
-                session.setAttribute("user", name);
+                session.setAttribute("user", id);
                 httpServletResponse.sendRedirect("/home");
             } else {
                 PrintWriter out = httpServletResponse.getWriter();

@@ -56,3 +56,10 @@ id=1
 14:58:23,441  WARN http-bio-8080-exec-7 - MY ID IS: null.
 17:22:03,562  INFO localhost-startStop-1 - EncodingFilter created.
 17:24:18,433  INFO http-bio-8080-exec-8 - New article on Ethernet added.
+13:42:56,277  WARN http-bio-8080-exec-3 - MY ID IS: null.
+19:25:55,505  WARN http-bio-8080-exec-5 - MY ID IS: null.
+19:30:49,094  WARN http-bio-8080-exec-7 - MY ID IS: null.
+19:35:46,410  WARN http-bio-8080-exec-8 - MY ID IS: null.
+19:36:31,602  WARN http-bio-8080-exec-9 - MY ID IS: null.
+19:49:58,318  WARN http-bio-8080-exec-1 - MY ID IS: null.
+19:56:43,261  WARN http-bio-8080-exec-2 - MY ID IS: null.

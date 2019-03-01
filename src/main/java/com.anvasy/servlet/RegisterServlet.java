@@ -29,10 +29,9 @@ public class RegisterServlet extends HttpServlet {
         String password = httpServletRequest.getParameter("password");
         try(DataBase dataBase = new DataBase()) {
             UsersDAO usersDAO = new UsersDAO(dataBase);
-            if(!usersDAO.getUser(name, password)) {
+            if(usersDAO.getUser(name, password) == -1) {
                 HttpSession session = httpServletRequest.getSession();
-                session.setAttribute("user", name);
-                usersDAO.insert(new User(name, password));
+                session.setAttribute("user", usersDAO.insert(new User(name, password)));
                 httpServletResponse.sendRedirect("/home");
             } else {
                 PrintWriter out = httpServletResponse.getWriter();

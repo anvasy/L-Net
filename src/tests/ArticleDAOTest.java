@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class ArticleDAOTest {
 
-    private DataBase dataBase;
+    /*private DataBase dataBase;
     private ArticleDAO articleDAO;
 
     @Before
@@ -76,7 +76,7 @@ public class ArticleDAOTest {
         article.setId(id);
 
         return article;
-    }
+    }*/
 
 }
 

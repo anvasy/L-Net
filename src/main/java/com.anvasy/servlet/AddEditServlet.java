@@ -35,8 +35,10 @@ public class AddEditServlet extends HttpServlet {
         String id = httpServletRequest.getParameter("id");
         try (DataBase dataBase = new DataBase()) {
             ArticleDAO articleDAO = new ArticleDAO(dataBase);
-            Article article = new Article(httpServletRequest.getParameter("name"),
-                    httpServletRequest.getParameter("summary"), httpServletRequest.getParameter("content"));
+            Article article = new Article();
+            article.setTopic(httpServletRequest.getParameter("name"));
+            article.setContent(httpServletRequest.getParameter("content"));
+            article.setSummary(httpServletRequest.getParameter("summary"));
             if(Integer.valueOf(id) != 0) {
                 article.setId(Integer.valueOf(id));
                 articleDAO.update(article);

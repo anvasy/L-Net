@@ -54,8 +54,22 @@
     </style>
 </head>
 <body>
-<header></header>
+<header>
+    <c:if test="${sessionScope.get('user') eq null}">
+        <form action="/login" method="get">
+            <button style="width: 100px;">Войти</button>
+        </form>
+    </c:if>
+    <c:if test="${sessionScope.get('user') ne null}">
+        <form action="/bonus" method="get">
+            <button style="width: 100px">Выйти</button>
+        </form>
+    </c:if>
+</header>
 <H3>СПИСОК СТАТЕЙ: </H3>
+<form action="/addedit" method="GET">
+    <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
+</form>
     <TABLE BORDER="1">
         <thead>
         <TR>
@@ -80,7 +94,7 @@
         </tbody>
     </TABLE>
 <br>
-    <form action="/addedit" method="GET" id="add">
+    <form action="/addedit" method="GET">
         <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
     </form>
 </body>

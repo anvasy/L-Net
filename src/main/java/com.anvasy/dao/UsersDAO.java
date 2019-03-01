@@ -6,8 +6,7 @@ import com.anvasy.model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Statement;
 
 public class UsersDAO {
 
@@ -17,55 +16,30 @@ public class UsersDAO {
         this.db = dataBase;
     }
 
-    public void insert(User user) throws SQLException {
+    public int insert(User user) throws SQLException {
         PreparedStatement ps = db.getCn().prepareStatement(
                 "insert into users (name,password)"
-                        + "values(?,?)");
+                        + "values(?,?)", Statement.RETURN_GENERATED_KEYS);
 
         ps.setString(1, user.getName());
         ps.setString(2, user.getPassword());
         ps.execute();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if(rs.next())
+            return rs.getInt(1);
+
+        return -1;
     }
 
-    public void delete(int id) throws SQLException {
-        PreparedStatement ps = db.getCn().prepareStatement(
-                "delete from users where id = ?");
-        ps.setInt(1, id);
-        ps.execute();
-    }
-
-    public void update(User user) throws SQLException {
-        PreparedStatement ps = db.getCn().prepareStatement(
-                "update users set name=?, password=? where id = ?");
-        ps.setString(1, user.getName());
-        ps.setString(2, user.getPassword());
-        ps.setInt(3, user.getId());
-
-        ps.execute();
-    }
-
-    public List<User> getAll() throws SQLException{
-        List<User> users = new ArrayList<>();
-
-        PreparedStatement preparedStatement = db.getCn().prepareStatement("select * from users");
-        ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next()) {
-            User user = new User();
-            user.setId(rs.getInt("id"));
-            user.setName(rs.getString("name"));
-            user.setPassword(rs.getString("password"));
-
-            users.add(user);
-        }
-        return users;
-    }
-
-    public boolean getUser(String name, String password) throws SQLException {
+    public int getUser(String name, String password) throws SQLException {
         PreparedStatement preparedStatement = db.getCn().prepareStatement("select * from users where name = ? and password = ?");
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, password);
         ResultSet rs = preparedStatement.executeQuery();
-        return rs.next();
+        if (rs.next())
+            return rs.getInt("id");
+        return -1;
     }
 
 }

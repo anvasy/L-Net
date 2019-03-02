@@ -63,3 +63,7 @@ id=1
 19:36:31,602  WARN http-bio-8080-exec-9 - MY ID IS: null.
 19:49:58,318  WARN http-bio-8080-exec-1 - MY ID IS: null.
 19:56:43,261  WARN http-bio-8080-exec-2 - MY ID IS: null.
+22:36:40,484  INFO http-bio-8080-exec-3 - Article with id 2was deleted.
+10:54:33,166  INFO http-bio-8080-exec-5 - Article with id 46was deleted.
+10:54:37,908  INFO http-bio-8080-exec-10 - Article with id 50was deleted.
+10:54:42,319  INFO http-bio-8080-exec-10 - Article with id 47was deleted.

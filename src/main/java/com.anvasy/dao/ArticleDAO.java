@@ -6,6 +6,7 @@ import com.anvasy.model.Article;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,10 @@ public class ArticleDAO {
         this.db = db;
     }
 
-    public void insert(Article article) throws SQLException {
+    public int insert(Article article) throws SQLException {
         PreparedStatement ps = db.getCn().prepareStatement(
                 "insert into articles (topic,summary,content,rate,rate_number)"
-                        + "values(?,?,?,?,?)");
+                        + "values(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
         ps.setString(1, article.getTopic());
         ps.setString(2, article.getSummary());
@@ -29,6 +30,12 @@ public class ArticleDAO {
         ps.setInt(5, 0);
 
         ps.execute();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if(rs.next())
+            return rs.getInt(1);
+
+        return -1;
     }
 
     public void delete(int id) throws SQLException {
@@ -91,6 +98,7 @@ public class ArticleDAO {
             article.setSummary(rs.getString("summary"));
             article.setContent(rs.getString("content"));
             article.setRate(rs.getFloat("rate"));
+            article.setRateNumber(rs.getInt("rate_number"));
         }
 
         return article;

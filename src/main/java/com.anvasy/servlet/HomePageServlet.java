@@ -5,7 +5,6 @@ import com.anvasy.dao.ArticleDAO;
 import com.anvasy.database.DataBase;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -23,11 +22,4 @@ public class HomePageServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        httpServletRequest.setAttribute("id", httpServletRequest.getParameter("id"));
-        logger.warn("MY ID IS: " + httpServletRequest.getParameter("id") + ".");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
-        dispatcher.forward(httpServletRequest, httpServletResponse);
-    }
 }

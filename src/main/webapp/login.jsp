@@ -14,7 +14,7 @@
 <form action="/login" method="POST" id="login">
     Имя: <input type="text" name="name" required="required" style="height: 30px"/>
     <br><br>
-    Пароль: <input type="password" name="password" required="required" style="height: 10%;"/>
+    Пароль: <input type="password" name="password" required="required" style="height: 30px;"/>
     <button>Войти</button>
 </form>
 <form action="/register" method="GET">

@@ -1,19 +1,10 @@
 package com.anvasy.model;
 
 public class Rate {
-    private int id;
     private int userId;
     private int articleId;
 
     public Rate() { }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getUserId() {
         return userId;

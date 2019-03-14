@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             if(id != -1) {
                 HttpSession session = httpServletRequest.getSession();
                 session.setAttribute("user", id);
-                httpServletResponse.sendRedirect("/home");
+                httpServletResponse.sendRedirect("home");
             } else {
                 PrintWriter out = httpServletResponse.getWriter();
                 out.println("<script type=\"text/javascript\">");

@@ -31,12 +31,12 @@
 <body>
 <header>
     <c:if test="${sessionScope.get('user') eq null}">
-    <form action="/login" method="get">
+    <form action="login" method="get">
             <button style="width: 100px;">Войти</button>
     </form>
     </c:if>
     <c:if test="${sessionScope.get('user') ne null}">
-        <form action="/bonus" method="get">
+        <form action="bonus" method="get">
             <button style="width: 100px">Выйти</button>
         </form>
     </c:if>
@@ -45,7 +45,7 @@
 <h1>${article.topic}</h1>
 <h3>Оценка: ${article.rate}</h3>
 <c:if test="${sessionScope.get('user') ne null}">
-<form action="/bonus" method="post">
+<form action="bonus" method="post">
     <select style="height: 50px; margin-left: 20px" name="rated">
         <option>1</option>
         <option>2</option>
@@ -59,15 +59,16 @@
 <p>
     ${article.content}
 </p>
-
+<c:if test="${sessionScope.get('user') ne null}">
 <div>
-    <form action="/addedit" method="GET">
+    <form action="addedit" method="GET">
         <button name="id" value="${article.id}">Изменить</button>
     </form>
-    <form action="/article" method="POST">
+    <form action="article" method="POST">
         <button name="id" value=${article.id}>Удалить</button>
     </form>
 </div>
+</c:if>
 
 </body>
 <ctg:copyright/>

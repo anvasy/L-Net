@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -34,18 +35,18 @@
 <body>
 <header>
     <c:if test="${sessionScope.get('user') eq null}">
-        <form action="/login" method="get">
+        <form action="login" method="get">
             <button style="width: 100px;">Войти</button>
         </form>
     </c:if>
     <c:if test="${sessionScope.get('user') ne null}">
-        <form action="/bonus" method="get">
+        <form action="bonus" method="get">
             <button style="width: 100px">Выйти</button>
         </form>
     </c:if>
 </header>
 <br>
-<form action="/addedit" method="POST" id="newarticle">
+<form action="addedit" method="POST" id="newarticle">
     Тема статьи: <input type="text" name="name" required="required" style="height: 30px" value="${article.topic}">
     <br><br>
     Краткое содержание: <textarea name="summary" required="required" style="height: 10%;">${article.summary}</textarea>

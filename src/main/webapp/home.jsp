@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Article list ${id}</title>
+    <title>Article list</title>
     <style>
         header{
             background-color: #f87b00;
@@ -56,18 +56,18 @@
 <body>
 <header>
     <c:if test="${sessionScope.get('user') eq null}">
-        <form action="/login" method="get">
+        <form action="login" method="get">
             <button style="width: 100px;">Войти</button>
         </form>
     </c:if>
     <c:if test="${sessionScope.get('user') ne null}">
-        <form action="/bonus" method="get">
+        <form action="bonus" method="get">
             <button style="width: 100px">Выйти</button>
         </form>
     </c:if>
 </header>
 <H3>СПИСОК СТАТЕЙ: </H3>
-<form action="/addedit" method="GET">
+<form action="addedit" method="GET">
     <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
 </form>
     <TABLE BORDER="1">
@@ -76,7 +76,11 @@
             <TH>№</TH>
             <TH>НАЗВАНИЕ</TH>
             <TH>КРАТКОЕ СОДЕРЖАНИЕ</TH>
-            <TH style="width: 55px"></TH>
+            <TH></TH>
+            <c:if test="${sessionScope.get('user') ne null}">
+            <TH></TH>
+            <TH></TH>
+            </c:if>
         </TR>
         </thead>
         <tbody>
@@ -85,16 +89,34 @@
                 <TD></TD>
                 <TD>${article.topic}</TD>
                 <TD>${article.summary}</TD>
-                <form action="/article" method="GET" id="show">
-                    <TD style="background-color: #6ec5b8;"><button name="id" value="${article.id}" style="height: 50px;
-                    width: 50px; background: transparent; border: none"></button></TD>
+                <form action="article" method="GET" id="show">
+                    <TD><button name="id" value="${article.id}">
+                        Просмотреть
+                    </button>
+                    </TD>
                 </form>
+                <c:if test="${sessionScope.get('user') ne null}">
+                <td>
+                <form action="addedit" method="GET">
+                    <button name="id" value=${article.id}>
+                        Изменить
+                </button>
+                </form>
+                </td>
+                <td>
+                <form action="article" method="POST">
+                    <button name="id" value=${article.id}>
+                        Удалить
+                    </button>
+                </form>
+                </td>
+                </c:if>
             </TR>
         </c:forEach>
         </tbody>
     </TABLE>
 <br>
-    <form action="/addedit" method="GET">
+    <form action="addedit" method="GET">
         <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
     </form>
 </body>

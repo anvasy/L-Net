@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>${article.topic}</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
         header{
             background-color: #f87b00;
@@ -64,9 +65,11 @@
     <form action="addedit" method="GET">
         <button name="id" value="${article.id}">Изменить</button>
     </form>
+    <c:if test="${role eq 'admin'}">
     <form action="article" method="POST">
         <button name="id" value=${article.id}>Удалить</button>
     </form>
+    </c:if>
 </div>
 </c:if>
 

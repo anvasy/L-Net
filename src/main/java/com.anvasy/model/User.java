@@ -3,15 +3,51 @@ package com.anvasy.model;
 public class User {
 
     private int id;
-    private String name;
+    private String username;
     private String password;
+    private String name;
+    private String surname;
+    private String role;
+    private String regType;
 
     public User(String name, String password) {
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
     public User() { }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRegType() {
+        return regType;
+    }
+
+    public void setRegType(String regType) {
+        this.regType = regType;
+    }
 
     public int getId() {
         return id;

@@ -21,7 +21,7 @@ public class ShowArticleServlet extends HttpServlet {
         try (DataBase dataBase = new DataBase()) {
             new ArticleDAO(dataBase).delete(Integer.valueOf(id));
             logger.info("Article with id " + id + "was deleted.");
-            httpServletResponse.sendRedirect("/home");
+            httpServletResponse.sendRedirect("home");
         } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 
@@ -29,7 +29,7 @@ public class ShowArticleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
         if(id.equals("")) {
-            httpServletResponse.sendRedirect("/home.jsp");
+            httpServletResponse.sendRedirect("home");
             return;
         }
         try (DataBase dataBase = new DataBase()) {

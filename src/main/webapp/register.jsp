@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Регистрация</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
         header{
             background-color: #f87b00;
@@ -25,12 +26,30 @@
     </style>
 </head>
 <body>
-<form action="register" method="POST" id="register">
-    Имя: <input type="text" name="name" required="required" style="height: 30px"/>
-    <br><br>
-    Пароль: <input type="password" name="password" required="required" style="height: 30px;"/>
-    <button>Зарегистрироваться</button>
-</form>
+<div class="container">
+    <div class="no-gutter row">
+        <div class="col-md-12" id="content">
+            <div class="panel-heading" style="background-color:#f87b00;color:#f87b00;height: 40px">
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="height: 55%;margin-top: 20px;">
+            <form action="register" method="POST" id="register">
+                Логин: &nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="username" required="required" style="width: 85%; height: 30px"/>
+                <br><br>
+                Пароль: &nbsp&nbsp <input type="password" name="password" required="required" style="width: 85%; height: 30px"/>
+                <br><hr><br>
+                Имя: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="name" style="width: 85%; height: 30px"/>
+                <br><br>
+                Фамилия: <input type="text" name="surname" style="width: 85%; height: 30px"/>
+                <br>
+                <br>
+                <button class="btn-block">Зарегистрироваться</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Article list</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
         header{
             background-color: #f87b00;
@@ -66,6 +67,7 @@
         </form>
     </c:if>
 </header>
+
 <H3>СПИСОК СТАТЕЙ: </H3>
 <form action="addedit" method="GET">
     <button name="id" value="0" style="width: 100%">ДОБАВИТЬ СТАТЬЮ</button>
@@ -79,7 +81,9 @@
             <TH></TH>
             <c:if test="${sessionScope.get('user') ne null}">
             <TH></TH>
-            <TH></TH>
+            <c:if test="${role eq 'admin'}">
+                <TH></TH>
+            </c:if>
             </c:if>
         </TR>
         </thead>
@@ -103,6 +107,7 @@
                 </button>
                 </form>
                 </td>
+                    <c:if test="${role eq 'admin'}">
                 <td>
                 <form action="article" method="POST">
                     <button name="id" value=${article.id}>
@@ -110,6 +115,7 @@
                     </button>
                 </form>
                 </td>
+                    </c:if>
                 </c:if>
             </TR>
         </c:forEach>

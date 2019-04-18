@@ -3,6 +3,7 @@ package com.anvasy.servlet;
 import com.anvasy.dao.UsersDAO;
 import com.anvasy.database.DataBase;
 import com.anvasy.model.User;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import javax.servlet.ServletException;
@@ -25,20 +26,24 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String name = httpServletRequest.getParameter("name");
+        String username = httpServletRequest.getParameter("username");
         String password = httpServletRequest.getParameter("password");
+        String name = StringUtils.defaultString(httpServletRequest.getParameter("name"));
+        String surname = StringUtils.defaultString(httpServletRequest.getParameter("surname"));
         try(DataBase dataBase = new DataBase()) {
             UsersDAO usersDAO = new UsersDAO(dataBase);
-            if(usersDAO.getUser(name, password) == -1) {
+            if(usersDAO.getUser(username, password) == null) {
                 HttpSession session = httpServletRequest.getSession();
-                session.setAttribute("user", usersDAO.insert(new User(name, password)));
+                User user = new User(username, password);
+                user.setName(name);
+                user.setUsername(surname);
+                user.setRegType("none");
+                session.setAttribute("user", usersDAO.insert(user));
+                session.setAttribute("role", "user");
                 httpServletResponse.sendRedirect("home");
             } else {
                 PrintWriter out = httpServletResponse.getWriter();
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Username already exists.');");
-                out.println("location='register.jsp';");
-                out.println("</script>");
+                out.println("<script type=\"text/javascript\">alert('Username already exists.');location='register.jsp';</script>");
             }
         } catch (SQLException | ClassNotFoundException e) {
             logger.error(ExceptionUtils.getStackTrace(e));

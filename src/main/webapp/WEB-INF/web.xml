@@ -17,11 +17,21 @@
       com.anvasy.filter.LoginFilter
     </filter-class>
   </filter>
-
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/login</url-pattern>
     <url-pattern>/register</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>
+      com.anvasy.filter.AdminFilter
+    </filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/admin</url-pattern>
   </filter-mapping>
 
   <servlet>
@@ -70,14 +80,40 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>BonusServlet</servlet-name>
-    <servlet-class>com.anvasy.servlet.BonusServlet</servlet-class>
-  </servlet>
+  <servlet-name>BonusServlet</servlet-name>
+  <servlet-class>com.anvasy.servlet.BonusServlet</servlet-class>
+</servlet>
   <servlet-mapping>
     <servlet-name>BonusServlet</servlet-name>
     <url-pattern>/bonus</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.AuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>VkAuthServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.VkAuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VkAuthServlet</servlet-name>
+    <url-pattern>/vkauth</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.anvasy.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
 
 </web-app>
 

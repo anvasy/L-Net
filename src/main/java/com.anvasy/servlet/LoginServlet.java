@@ -2,6 +2,7 @@ package com.anvasy.servlet;
 
 import com.anvasy.dao.UsersDAO;
 import com.anvasy.database.DataBase;
+import com.anvasy.model.User;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import javax.servlet.ServletException;
@@ -27,20 +28,16 @@ public class LoginServlet extends HttpServlet {
         String name = httpServletRequest.getParameter("name");
         String password = httpServletRequest.getParameter("password");
         try(DataBase dataBase = new DataBase()) {
-            int id = new UsersDAO(dataBase).getUser(name, password);
-            if(id != -1) {
+            User user = new UsersDAO(dataBase).getUser(name, password);
+            if(user != null) {
                 HttpSession session = httpServletRequest.getSession();
-                session.setAttribute("user", id);
+                session.setAttribute("user", user.getId());
+                session.setAttribute("role", user.getRole());
                 httpServletResponse.sendRedirect("home");
             } else {
                 PrintWriter out = httpServletResponse.getWriter();
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Incorrect username or password. Maybe both.');");
-                out.println("location='login.jsp';");
-                out.println("</script>");
+                out.println("<script type=\"text/javascript\">alert('Incorrect username or password. Maybe both.');location='login.jsp';</script>");
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            logger.error(ExceptionUtils.getStackTrace(e));
-        }
+        } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 }

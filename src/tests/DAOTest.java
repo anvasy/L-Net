@@ -43,22 +43,30 @@ public class DAOTest {
     @Test
     public void testGetOneAndInsert() throws SQLException {
         User user = new User();
-        user.setName("TEST USER");
+        user.setUsername("TEST USER");
         user.setPassword("TEST PASSWORD");
         user.setId(0);
-        assertEquals("TEST USER", user.getName());
+        user.setRegType("none");
+        assertEquals("TEST USER", user.getUsername());
         assertEquals("TEST PASSWORD", user.getPassword());
         uID = usersDAO.insert(user);
         assertNotEquals(uID, 0);
-        assertEquals(usersDAO.getUser("TEST USER", "TEST PASSWORD"), uID);
+        usersDAO.changeRole(uID);
+        assertEquals(usersDAO.getUser("TEST USER", "TEST PASSWORD").getId(), uID);
+        assertEquals(usersDAO.getUser("TEST USER").getRole(), "admin");
+        usersDAO.changeRole(uID);
+        assertEquals(usersDAO.getUser("TEST USER").getRole(), "user");
         User testUser = new User("TEST", "TEST");
-        testUser.getId();
+        assertNull(usersDAO.getUser("name that doesn't exist"));
     }
 
     @Test
     public void testGetAll() throws SQLException{
         List<Article> articles = articleDAO.getAll();
         assertNotNull(articles);
+
+        List<User> users = usersDAO.getAll();
+        assertNotNull(users);
     }
 
     @Test
@@ -88,7 +96,7 @@ public class DAOTest {
         if(rs.next())
             aID = rs.getInt(1);
 
-        ps = dataBase.getCn().prepareStatement("insert into users (name, password) values('test','test')",
+        ps = dataBase.getCn().prepareStatement("insert into users (username, password) values('test','test')",
                 Statement.RETURN_GENERATED_KEYS);
         ps.execute();
         rs = ps.getGeneratedKeys();

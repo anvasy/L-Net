@@ -47,7 +47,7 @@ public class AddEditServlet extends HttpServlet {
                 articleDAO.insert(article);
                 logger.info("Article with id " + id + " was changed.");
             }
-            httpServletResponse.sendRedirect("/home");
+            httpServletResponse.sendRedirect("home");
         } catch (SQLException | ClassNotFoundException e) { logger.error(ExceptionUtils.getStackTrace(e)); }
     }
 }
